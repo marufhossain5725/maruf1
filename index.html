@@ -1,0 +1,2545 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>SSC 27 Helps — Study Portal</title>
+
+<style>
+:root{
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --text:#152033;
+    --muted:#687386;
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --green:#16a34a;
+    --red:#dc2626;
+    --orange:#f59e0b;
+    --border:#e2e8f0;
+    --shadow:0 20px 55px rgba(37,99,235,.13);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:
+        Inter,
+        "Noto Sans Bengali",
+        system-ui,
+        Arial,
+        sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.3s;
+}
+
+body.dark{
+    --bg:#070b14;
+    --card:#111827;
+    --text:#f8fafc;
+    --muted:#9ca3af;
+    --border:#263244;
+    --shadow:0 20px 55px rgba(0,0,0,.45);
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.dark header{
+    background:rgba(17,24,39,.9);
+}
+
+.nav{
+    max-width:1250px;
+    margin:auto;
+    min-height:65px;
+    padding:10px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:900;
+}
+
+.logo span{
+    color:var(--primary);
+}
+
+.navlinks{
+    display:flex;
+    gap:7px;
+    margin-left:20px;
+}
+
+.navlinks button{
+    border:0;
+    background:transparent;
+    color:var(--text);
+    padding:9px 10px;
+    border-radius:10px;
+}
+
+.navlinks button:hover{
+    background:var(--bg);
+}
+
+.spacer{
+    flex:1;
+}
+
+.theme{
+    width:42px;
+    height:42px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:var(--bg);
+}
+
+.youtube{
+    text-decoration:none;
+    background:#ef4444;
+    color:white;
+    padding:10px 14px;
+    border-radius:12px;
+    font-weight:800;
+}
+
+main{
+    max-width:1250px;
+    margin:auto;
+    padding:25px 18px 100px;
+}
+
+.panel{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:25px;
+    box-shadow:var(--shadow);
+}
+
+.hero{
+    display:grid;
+    grid-template-columns:1.5fr .7fr;
+    gap:20px;
+}
+
+.heroText{
+    position:relative;
+    overflow:hidden;
+    padding:38px;
+}
+
+.heroText:after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    right:-170px;
+    top:-170px;
+    border-radius:50%;
+    background:linear-gradient(
+        135deg,
+        rgba(37,99,235,.3),
+        rgba(124,58,237,.3)
+    );
+}
+
+.heroText>*{
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-size:clamp(34px,5vw,60px);
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:var(--muted);
+    line-height:1.8;
+    max-width:760px;
+}
+
+.stats{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.stat{
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:15px;
+}
+
+.stat b{
+    display:block;
+    font-size:25px;
+}
+
+.stat small{
+    color:var(--muted);
+}
+
+.hero3d{
+    min-height:270px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:25px;
+    transform-style:preserve-3d;
+    transition:.5s;
+}
+
+.hero3d:hover{
+    transform:
+        perspective(800px)
+        rotateX(7deg)
+        rotateY(-8deg)
+        translateY(-8px);
+}
+
+.bigicons{
+    font-size:65px;
+    margin-bottom:15px;
+}
+
+.hero3d p{
+    color:var(--muted);
+    margin-top:8px;
+}
+
+.youtubeBox{
+    margin-top:18px;
+    padding:15px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.youtubeBox span{
+    color:var(--muted);
+}
+
+.youtubeBox a{
+    color:white;
+    text-decoration:none;
+    background:#ef4444;
+    padding:11px 16px;
+    border-radius:12px;
+    font-weight:800;
+}
+
+.sectionTitle{
+    margin:35px 0 15px;
+    font-size:27px;
+}
+
+.subjectGrid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:13px;
+}
+
+.subject{
+    padding:20px;
+    min-height:125px;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.subject:hover{
+    transform:translateY(-7px) rotateX(3deg);
+}
+
+.subjectIcon{
+    font-size:35px;
+}
+
+.subject h3{
+    margin-top:10px;
+}
+
+.subject p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:5px;
+}
+
+.controls{
+    margin-top:20px;
+    padding:16px;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:10px;
+}
+
+.field{
+    width:100%;
+    padding:13px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    outline:none;
+}
+
+.field:focus{
+    border-color:var(--primary);
+}
+
+.tabs{
+    margin:20px 0;
+    display:flex;
+    gap:8px;
+    overflow:auto;
+}
+
+.tab{
+    white-space:nowrap;
+    padding:11px 17px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+}
+
+.tab.active{
+    background:var(--primary);
+    color:white;
+}
+
+.quiz{
+    padding:25px;
+}
+
+.quizTop{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.badge{
+    display:inline-block;
+    padding:7px 11px;
+    border-radius:999px;
+    background:#eff6ff;
+    color:#1d4ed8;
+    font-size:12px;
+    font-weight:800;
+}
+
+.dark .badge{
+    background:#172554;
+    color:#bfdbfe;
+}
+
+.progress{
+    height:9px;
+    background:var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    margin:18px 0;
+}
+
+.progressBar{
+    width:0;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+    transition:.3s;
+}
+
+.question{
+    font-size:23px;
+    line-height:1.7;
+    margin:25px 0;
+}
+
+.options{
+    display:grid;
+    gap:12px;
+}
+
+.option{
+    text-align:left;
+    padding:16px;
+    border-radius:15px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    transition:.2s;
+}
+
+.option:hover{
+    transform:translateX(5px);
+    border-color:var(--primary);
+}
+
+.option.correct{
+    border-color:var(--green);
+    background:#f0fdf4;
+}
+
+.option.wrong{
+    border-color:var(--red);
+    background:#fef2f2;
+}
+
+.dark .option.correct{
+    background:#052e16;
+}
+
+.dark .option.wrong{
+    background:#450a0a;
+}
+
+.explanation{
+    display:none;
+    margin-top:18px;
+    padding:16px;
+    border-left:4px solid var(--primary);
+    border-radius:10px;
+    background:var(--bg);
+    line-height:1.7;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.primary,
+.secondary{
+    border-radius:12px;
+    padding:12px 17px;
+    font-weight:800;
+}
+
+.primary{
+    border:0;
+    background:var(--primary);
+    color:white;
+}
+
+.secondary{
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+}
+
+.contentGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.contentCard{
+    padding:22px;
+}
+
+.contentCard h3{
+    margin-bottom:10px;
+}
+
+.contentCard p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.contentCard ul{
+    padding-left:22px;
+    line-height:2;
+    color:var(--muted);
+}
+
+.contentCard li{
+    margin-bottom:3px;
+}
+
+.cqCard{
+    padding:22px;
+}
+
+.cqQuestion{
+    margin-top:15px;
+    padding:18px;
+    border-radius:15px;
+    background:var(--bg);
+    border:1px solid var(--border);
+}
+
+.cqQuestion h4{
+    margin-bottom:12px;
+}
+
+.cqQuestion p{
+    line-height:1.8;
+    color:var(--muted);
+}
+
+.answerBox{
+    margin-top:13px;
+    padding:14px;
+    border-left:4px solid var(--green);
+    background:var(--bg);
+    line-height:1.8;
+}
+
+.periodicWrap{
+    padding:22px;
+    overflow:auto;
+}
+
+.periodic{
+    display:grid;
+    grid-template-columns:repeat(18,minmax(58px,1fr));
+    gap:5px;
+    min-width:1100px;
+}
+
+.element{
+    min-height:62px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    background:var(--bg);
+    padding:6px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.element:hover{
+    transform:translateY(-4px) scale(1.04);
+    box-shadow:0 10px 20px rgba(37,99,235,.15);
+}
+
+.element strong{
+    display:block;
+    font-size:15px;
+}
+
+.element small{
+    display:block;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+.empty{
+    padding:45px;
+    text-align:center;
+    color:var(--muted);
+}
+
+.result{
+    padding:17px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.result b{
+    flex:1;
+}
+
+footer{
+    text-align:center;
+    padding:35px 15px;
+    color:var(--muted);
+}
+
+@media(max-width:950px){
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .subjectGrid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .controls{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .contentGrid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .navlinks{
+        display:none;
+    }
+
+    main{
+        padding:16px 11px 80px;
+    }
+
+    .heroText{
+        padding:26px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .subjectGrid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .controls{
+        grid-template-columns:1fr;
+    }
+
+    .question{
+        font-size:19px;
+    }
+
+    .youtube{
+        display:none;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    *{
+        transition:none!important;
+    }
+
+}
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+SSC 27 <span>Helps</span>
+</div>
+
+<div class="navlinks">
+
+<button onclick="scrollToSection('mcq')">
+MCQ
+</button>
+
+<button onclick="scrollToSection('cq')">
+CQ
+</button>
+
+<button onclick="scrollToSection('english')">
+English
+</button>
+
+<button onclick="scrollToSection('bangla')">
+বাংলা
+</button>
+
+<button onclick="scrollToSection('periodic')">
+Periodic Table
+</button>
+
+</div>
+
+<div class="spacer"></div>
+
+<a
+class="youtube"
+href="https://youtube.com/@mh7_l5z?si=dwDMjX-SeJ5yyheH"
+target="_blank">
+▶ YouTube
+</a>
+
+<button
+id="themeBtn"
+class="theme">
+🌙
+</button>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="panel heroText">
+
+<h1>
+SSC 27 Helps
+</h1>
+
+<p>
+SSC 2027 students-এর জন্য MCQ, CQ,
+বাংলা রচনা ও অনুচ্ছেদ, English application,
+paragraph, dialogue এবং interactive periodic table —
+সব এক জায়গায়।
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<b id="totalQuestions">
+30,000+
+</b>
+<small>Science MCQ</small>
+</div>
+
+<div class="stat">
+<b id="loaded">
+0
+</b>
+<small>Loaded</small>
+</div>
+
+<div class="stat">
+<b id="score">
+0
+</b>
+<small>Correct</small>
+</div>
+
+<div class="stat">
+<b id="bookmarks">
+0
+</b>
+<small>Bookmarks</small>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel hero3d">
+
+<div class="bigicons">
+🧪 ⚡ 🧬
+</div>
+
+<h2>
+Study Smart
+</h2>
+
+<p>
+MCQ • CQ • Language • Science
+</p>
+
+</div>
+
+</section>
+
+
+<div class="panel youtubeBox">
+
+<span>
+📺 Study videos and updates
+</span>
+
+<a
+href="https://youtube.com/@mh7_l5z?si=dwDMjX-SeJ5yyheH"
+target="_blank">
+
+Visit MH7 YouTube Channel →
+
+</a>
+
+</div>
+
+
+<!-- SUBJECTS -->
+
+<h2 class="sectionTitle">
+📚 Subjects
+</h2>
+
+<section class="subjectGrid">
+
+<div class="panel subject"
+onclick="selectSubject('Chemistry')">
+<div class="subjectIcon">🧪</div>
+<h3>Chemistry</h3>
+<p>MCQ + CQ</p>
+</div>
+
+<div class="panel subject"
+onclick="selectSubject('Physics')">
+<div class="subjectIcon">⚡</div>
+<h3>Physics</h3>
+<p>MCQ + CQ</p>
+</div>
+
+<div class="panel subject"
+onclick="selectSubject('Biology')">
+<div class="subjectIcon">🧬</div>
+<h3>Biology</h3>
+<p>MCQ + CQ</p>
+</div>
+
+<div class="panel subject"
+onclick="scrollToSection('bangla')">
+<div class="subjectIcon">🇧🇩</div>
+<h3>বাংলা</h3>
+<p>রচনা + অনুচ্ছেদ</p>
+</div>
+
+<div class="panel subject"
+onclick="scrollToSection('english')">
+<div class="subjectIcon">🇬🇧</div>
+<h3>English</h3>
+<p>Application + Dialogue</p>
+</div>
+
+</section>
+
+
+<!-- MCQ -->
+
+<h2
+class="sectionTitle"
+id="mcq">
+🎯 MCQ Practice
+</h2>
+
+
+<section class="panel controls">
+
+<input
+id="search"
+class="field"
+placeholder="🔎 Search MCQ...">
+
+<select
+id="subjectSelect"
+class="field">
+
+<option value="all">
+All Subjects
+</option>
+
+<option value="Chemistry">
+🧪 Chemistry
+</option>
+
+<option value="Physics">
+⚡ Physics
+</option>
+
+<option value="Biology">
+🧬 Biology
+</option>
+
+</select>
+
+
+<select
+id="languageSelect"
+class="field">
+
+<option value="all">
+All Languages
+</option>
+
+<option value="bn">
+বাংলা
+</option>
+
+<option value="en">
+English
+</option>
+
+</select>
+
+</section>
+
+
+<div class="tabs">
+
+<button
+class="tab active"
+data-tab="quiz">
+🎯 Quiz
+</button>
+
+<button
+class="tab"
+data-tab="bank">
+📚 Question Bank
+</button>
+
+<button
+class="tab"
+data-tab="bookmark">
+🔖 Bookmarks
+</button>
+
+</div>
+
+
+<section
+id="quizTab"
+class="panel quiz">
+
+<div class="quizTop">
+
+<span
+id="qMeta"
+class="badge">
+Loading...
+</span>
+
+<span id="counter">
+0 / 0
+</span>
+
+</div>
+
+
+<div class="progress">
+
+<div
+id="progressBar"
+class="progressBar">
+</div>
+
+</div>
+
+
+<div
+id="question"
+class="question">
+Loading...
+</div>
+
+
+<div
+id="options"
+class="options">
+</div>
+
+
+<div
+id="explanation"
+class="explanation">
+</div>
+
+
+<div class="actions">
+
+<button
+id="nextBtn"
+class="primary">
+Next →
+</button>
+
+<button
+id="randomBtn"
+class="secondary">
+🔀 Random
+</button>
+
+<button
+id="bookmarkBtn"
+class="secondary">
+🔖 Bookmark
+</button>
+
+</div>
+
+</section>
+
+
+<section
+id="bankTab"
+class="panel"
+style="display:none">
+</section>
+
+
+<section
+id="bookmarkTab"
+class="panel"
+style="display:none">
+</section>
+
+
+<!-- CQ -->
+
+<h2
+class="sectionTitle"
+id="cq">
+📝 Creative Question — CQ
+</h2>
+
+
+<section class="contentGrid">
+
+<div class="panel cqCard">
+
+<h3>
+🧪 Chemistry CQ
+</h3>
+
+<div class="cqQuestion">
+
+<h4>
+প্রশ্ন:
+</h4>
+
+<p>
+একটি পরীক্ষাগারে দুটি দ্রবণ মিশ্রিত করা হলো।
+মিশ্রণের ফলে নতুন পদার্থ সৃষ্টি হলো এবং কিছু
+তাপ নির্গত হলো।
+</p>
+
+<p>
+ক) রাসায়নিক বিক্রিয়া কী?
+<br>
+খ) বিক্রিয়ক ও উৎপাদ বলতে কী বোঝ?
+<br>
+গ) উদ্দীপকের ঘটনাটি ব্যাখ্যা কর।
+<br>
+ঘ) রাসায়নিক বিক্রিয়ায় শক্তির পরিবর্তন বিশ্লেষণ কর।
+</p>
+
+<div class="answerBox">
+<strong>উত্তরের নির্দেশনা:</strong><br>
+ক — সংজ্ঞা লিখবে।<br>
+খ — বিক্রিয়ক ও উৎপাদের পার্থক্য লিখবে।<br>
+গ — নতুন পদার্থ সৃষ্টি হওয়ার বিষয়টি ব্যাখ্যা করবে।<br>
+ঘ — শক্তি নির্গমন বা শোষণের ধারণা ব্যাখ্যা করবে।
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel cqCard">
+
+<h3>
+⚡ Physics CQ
+</h3>
+
+<div class="cqQuestion">
+
+<h4>
+প্রশ্ন:
+</h4>
+
+<p>
+একটি গাড়ি স্থির অবস্থা থেকে চলতে শুরু করে
+এবং কিছু সময় পরে তার বেগ বৃদ্ধি পায়।
+</p>
+
+<p>
+ক) বেগ কী?
+<br>
+খ) ত্বরণ বলতে কী বোঝ?
+<br>
+গ) গাড়িটির ত্বরণ ব্যাখ্যা কর।
+<br>
+ঘ) গাড়ির গতি পরিবর্তনে বলের ভূমিকা বিশ্লেষণ কর।
+</p>
+
+<div class="answerBox">
+<strong>উত্তরের নির্দেশনা:</strong><br>
+সংজ্ঞা → সূত্র → একক → উদ্দীপকের সঙ্গে
+সম্পর্ক → প্রয়োজনীয় ব্যাখ্যা।
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel cqCard">
+
+<h3>
+🧬 Biology CQ
+</h3>
+
+<div class="cqQuestion">
+
+<h4>
+প্রশ্ন:
+</h4>
+
+<p>
+একটি সবুজ উদ্ভিদ পর্যাপ্ত আলো ও পানি পেলে
+নিজের খাদ্য তৈরি করে।
+</p>
+
+<p>
+ক) সালোকসংশ্লেষণ কী?
+<br>
+খ) ক্লোরোফিলের কাজ কী?
+<br>
+গ) উদ্ভিদ কীভাবে খাদ্য তৈরি করে?
+<br>
+ঘ) জীবজগতে সালোকসংশ্লেষণের গুরুত্ব বিশ্লেষণ কর।
+</p>
+
+<div class="answerBox">
+<strong>উত্তরের নির্দেশনা:</strong><br>
+সালোকসংশ্লেষণের সংজ্ঞা, উপাদান,
+প্রক্রিয়া ও গুরুত্ব ধারাবাহিকভাবে লিখবে।
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel cqCard">
+
+<h3>
+📖 বাংলা CQ / সৃজনশীল
+</h3>
+
+<div class="cqQuestion">
+
+<h4>
+উদ্দীপক:
+</h4>
+
+<p>
+একজন শিক্ষার্থী নিয়মিত বই পড়ে এবং নিজের
+অবসর সময়কে জ্ঞান অর্জনের কাজে ব্যবহার করে।
+</p>
+
+<p>
+ক) জ্ঞান কী?
+<br>
+খ) বই পড়ার দুটি উপকারিতা লেখ।
+<br>
+গ) উদ্দীপকের শিক্ষার্থীর অভ্যাস ব্যাখ্যা কর।
+<br>
+ঘ) শিক্ষার্থীদের জীবনে বই পড়ার গুরুত্ব বিশ্লেষণ কর।
+</p>
+
+<div class="answerBox">
+<strong>লেখার টিপস:</strong><br>
+প্রতিটি অংশের উত্তর আলাদা অনুচ্ছেদে
+সুস্পষ্টভাবে লিখবে।
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ENGLISH -->
+
+<h2
+class="sectionTitle"
+id="english">
+🇬🇧 English Writing
+</h2>
+
+
+<section class="contentGrid">
+
+<div class="panel contentCard">
+
+<h3>
+✉️ Application
+</h3>
+
+<p>
+<strong>
+Application for opening a debating club
+</strong>
+</p>
+
+<p>
+To<br>
+The Headmaster<br>
+[School Name]<br>
+[School Address]
+</p>
+
+<p>
+<strong>Subject: Prayer for opening a debating club.</strong>
+</p>
+
+<p>
+Sir,<br><br>
+
+We, the students of your school, would like to
+draw your kind attention to the need for a
+debating club in our school. A debating club
+can help students develop confidence,
+communication skills and logical thinking.
+It will also create an opportunity for students
+to practise public speaking.
+<br><br>
+
+We, therefore, request you to take necessary
+steps to open a debating club in our school.
+We shall remain grateful to you.
+<br><br>
+
+Yours obediently,<br>
+The students of your school
+</p>
+
+</div>
+
+
+<div class="panel contentCard">
+
+<h3>
+📝 Paragraph
+</h3>
+
+<p>
+<strong>
+The Importance of Tree Plantation
+</strong>
+</p>
+
+<p>
+Tree plantation is very important for our life
+and environment. Trees give us oxygen and
+help keep the environment balanced. They
+provide fruits, wood and shade. Trees also
+help reduce soil erosion and protect wildlife.
+Unfortunately, excessive cutting of trees is
+causing environmental problems. Therefore,
+we should plant more trees and take care of
+them. Every student can participate in tree
+plantation programmes. A green environment
+is essential for a healthy and peaceful life.
+</p>
+
+</div>
+
+
+<div class="panel contentCard">
+
+<h3>
+💬 Dialogue
+</h3>
+
+<p>
+<strong>
+Two friends discussing preparation for SSC
+</strong>
+</p>
+
+<p>
+<strong>Rafi:</strong> How is your SSC preparation going?
+<br><br>
+
+<strong>Hasan:</strong> It is going well, but I need
+more practice in English.
+<br><br>
+
+<strong>Rafi:</strong> You should practise grammar
+and writing every day.
+<br><br>
+
+<strong>Hasan:</strong> That's a good idea. What about
+your science subjects?
+<br><br>
+
+<strong>Rafi:</strong> I am solving MCQs and CQ
+questions regularly.
+<br><br>
+
+<strong>Hasan:</strong> Great! Let's make a study
+routine together.
+</p>
+
+</div>
+
+
+<div class="panel contentCard">
+
+<h3>
+📚 Composition
+</h3>
+
+<p>
+<strong>
+My Aim in Life
+</strong>
+</p>
+
+<p>
+Every person should have an aim in life.
+An aim gives direction to our activities.
+My aim in life is to become a responsible
+professional and serve society. I want to
+develop my knowledge and skills through
+education. I believe that honesty, discipline
+and hard work are necessary to achieve a
+good aim. I will work sincerely and try to
+contribute positively to my community.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- BANGLA -->
+
+<h2
+class="sectionTitle"
+id="bangla">
+🇧🇩 বাংলা
+</h2>
+
+
+<section class="contentGrid">
+
+<div class="panel contentCard">
+
+<h3>
+✍️ রচনা
+</h3>
+
+<p>
+<strong>
+বৃক্ষরোপণ
+</strong>
+</p>
+
+<p>
+বৃক্ষ আমাদের পরম বন্ধু। গাছপালা পরিবেশের
+ভারসাম্য রক্ষা করে এবং আমাদের অক্সিজেন
+দেয়। গাছ থেকে আমরা ফল, কাঠ ও ঔষধসহ
+বিভিন্ন উপকরণ পাই। গাছ মাটি ক্ষয় রোধ করে
+এবং জীববৈচিত্র্য রক্ষায় গুরুত্বপূর্ণ ভূমিকা
+পালন করে। বর্তমানে নির্বিচারে গাছ কাটার ফলে
+পরিবেশের নানা সমস্যা সৃষ্টি হচ্ছে। তাই
+বেশি বেশি গাছ লাগাতে হবে এবং লাগানো
+গাছের যত্ন নিতে হবে। সুন্দর ও বাসযোগ্য
+পরিবেশের জন্য বৃক্ষরোপণ অত্যন্ত জরুরি।
+</p>
+
+</div>
+
+
+<div class="panel contentCard">
+
+<h3>
+📖 অনুচ্ছেদ
+</h3>
+
+<p>
+<strong>
+সময়ের মূল্য
+</strong>
+</p>
+
+<p>
+সময় মানুষের জীবনের একটি অমূল্য সম্পদ।
+হারানো অর্থ বা সম্পদ ফিরে পাওয়া সম্ভব,
+কিন্তু হারানো সময় ফিরে পাওয়া যায় না।
+যে ব্যক্তি সময়ের মূল্য বোঝে, সে জীবনে
+সুশৃঙ্খলভাবে কাজ করতে পারে। শিক্ষার্থীদের
+সময়ের প্রতি বিশেষ যত্নশীল হওয়া উচিত।
+পড়াশোনা, বিশ্রাম ও অন্যান্য কাজের জন্য
+সময় ভাগ করে নিলে ভালো ফল পাওয়া যায়।
+তাই সফল জীবনের জন্য সময়ের সঠিক ব্যবহার
+অত্যন্ত গুরুত্বপূর্ণ।
+</p>
+
+</div>
+
+
+<div class="panel contentCard">
+
+<h3>
+✉️ আবেদনপত্র
+</h3>
+
+<p>
+<strong>
+বিদ্যালয়ে বিজ্ঞান ক্লাব স্থাপনের জন্য আবেদন
+</strong>
+</p>
+
+<p>
+বরাবর<br>
+প্রধান শিক্ষক<br>
+[বিদ্যালয়ের নাম]
+</p>
+
+<p>
+<strong>বিষয়: বিদ্যালয়ে বিজ্ঞান ক্লাব স্থাপনের আবেদন।</strong>
+</p>
+
+<p>
+জনাব,<br><br>
+
+বিনীত নিবেদন এই যে, আমাদের বিদ্যালয়ে
+বিজ্ঞান ক্লাব না থাকায় শিক্ষার্থীরা বিজ্ঞান
+বিষয়ক বিভিন্ন কার্যক্রমে পর্যাপ্তভাবে অংশগ্রহণ
+করতে পারছে না। একটি বিজ্ঞান ক্লাব প্রতিষ্ঠিত
+হলে শিক্ষার্থীদের সৃজনশীলতা ও বৈজ্ঞানিক
+চিন্তাভাবনা বৃদ্ধি পাবে।
+<br><br>
+
+অতএব, বিদ্যালয়ে একটি বিজ্ঞান ক্লাব স্থাপনের
+প্রয়োজনীয় ব্যবস্থা গ্রহণ করার জন্য আপনার
+নিকট বিনীত আবেদন জানাচ্ছি।
+</p>
+
+</div>
+
+
+<div class="panel contentCard">
+
+<h3>
+💬 সংলাপ
+</h3>
+
+<p>
+<strong>
+পরীক্ষার প্রস্তুতি নিয়ে দুই বন্ধুর সংলাপ
+</strong>
+</p>
+
+<p>
+<strong>রাকিব:</strong> তোমার পরীক্ষার প্রস্তুতি কেমন?
+<br><br>
+
+<strong>সাকিব:</strong> ভালো। তবে ইংরেজিতে আরও
+অনুশীলন করতে হবে।
+<br><br>
+
+<strong>রাকিব:</strong> প্রতিদিন একটু করে অনুশীলন
+করলে ভালো হবে।
+<br><br>
+
+<strong>সাকিব:</strong> ঠিক বলেছ। তুমি বিজ্ঞান
+কীভাবে পড়ছ?
+<br><br>
+
+<strong>রাকিব:</strong> MCQ ও CQ দুটোই নিয়মিত
+অনুশীলন করছি।
+<br><br>
+
+<strong>সাকিব:</strong> আমিও আজ থেকে একটি
+রুটিন তৈরি করব।
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PERIODIC TABLE -->
+
+<h2
+class="sectionTitle"
+id="periodic">
+🧪 Interactive Periodic Table
+</h2>
+
+
+<section class="panel periodicWrap">
+
+<div
+id="periodicTable"
+class="periodic">
+</div>
+
+</section>
+
+
+<div
+id="elementInfo"
+class="panel"
+style="
+display:none;
+margin-top:15px;
+padding:20px;
+">
+
+<h3 id="elementName"></h3>
+
+<p
+id="elementDetails"
+style="
+color:var(--muted);
+margin-top:8px;
+line-height:1.7;
+">
+</p>
+
+</div>
+
+
+</main>
+
+
+<footer>
+
+<strong>SSC 27 Helps</strong>
+
+<br>
+
+MCQ • CQ • বাংলা • English • Science
+
+<br><br>
+
+© 2026 SSC 27 Helps
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   MCQ DATABASE
+===================================================== */
+
+const MCQ_DATABASE = [
+
+{
+id:"chem001",
+subject:"Chemistry",
+language:"en",
+chapter:"Atoms",
+difficulty:"Easy",
+
+question:
+"What is the smallest unit of an element that retains its chemical properties?",
+
+options:[
+"Atom",
+"Cell",
+"Molecule",
+"Tissue"
+],
+
+answer:0,
+
+explanation:
+"An atom is the smallest unit of an element that retains its chemical identity."
+},
+
+
+{
+id:"chem002",
+subject:"Chemistry",
+language:"bn",
+chapter:"রাসায়নিক বিক্রিয়া",
+difficulty:"Easy",
+
+question:
+"দুই বা ততোধিক পদার্থ যুক্ত হয়ে নতুন পদার্থ তৈরি হলে তাকে কী বলে?",
+
+options:[
+"সংযোজন বিক্রিয়া",
+"বিয়োজন বিক্রিয়া",
+"দহন",
+"ভৌত পরিবর্তন"
+],
+
+answer:0,
+
+explanation:
+"দুই বা ততোধিক পদার্থ থেকে একটি নতুন পদার্থ তৈরি হলে তাকে সংযোজন বিক্রিয়া বলা হয়।"
+},
+
+
+{
+id:"phys001",
+subject:"Physics",
+language:"en",
+chapter:"Motion",
+difficulty:"Easy",
+
+question:
+"What is the SI unit of speed?",
+
+options:[
+"Newton",
+"Metre",
+"Metre per second",
+"Joule"
+],
+
+answer:2,
+
+explanation:
+"The SI unit of speed is metre per second (m/s)."
+},
+
+
+{
+id:"phys002",
+subject:"Physics",
+language:"bn",
+chapter:"বল",
+difficulty:"Easy",
+
+question:
+"বলের SI একক কোনটি?",
+
+options:[
+"জুল",
+"নিউটন",
+"ওয়াট",
+"প্যাসকেল"
+],
+
+answer:1,
+
+explanation:
+"বলের SI একক হলো নিউটন।"
+},
+
+
+{
+id:"bio001",
+subject:"Biology",
+language:"en",
+chapter:"Cell",
+difficulty:"Easy",
+
+question:
+"Which structure controls many activities of a eukaryotic cell?",
+
+options:[
+"Nucleus",
+"Cell wall",
+"Vacuole",
+"Ribosome"
+],
+
+answer:0,
+
+explanation:
+"The nucleus contains genetic material and regulates many cellular activities."
+},
+
+
+{
+id:"bio002",
+subject:"Biology",
+language:"bn",
+chapter:"সালোকসংশ্লেষণ",
+difficulty:"Easy",
+
+question:
+"সবুজ উদ্ভিদের সালোকসংশ্লেষণে প্রধান রঞ্জক কোনটি?",
+
+options:[
+"হিমোগ্লোবিন",
+"ক্লোরোফিল",
+"কেরাটিন",
+"মেলানিন"
+],
+
+answer:1,
+
+explanation:
+"ক্লোরোফিল সূর্যের আলো শোষণ করে এবং সালোকসংশ্লেষণে সাহায্য করে।"
+}
+
+];
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let filtered = [...MCQ_DATABASE];
+
+let current = 0;
+
+let score = 0;
+
+let bookmarks =
+    new Set(
+        JSON.parse(
+            localStorage.getItem(
+                "ssc27_bookmarks"
+            ) || "[]"
+        )
+    );
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function $(id){
+    return document.getElementById(id);
+}
+
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function saveBookmarks(){
+
+    localStorage.setItem(
+        "ssc27_bookmarks",
+        JSON.stringify([...bookmarks])
+    );
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+function applyFilters(){
+
+    const search =
+        $("search").value
+        .toLowerCase()
+        .trim();
+
+    const subject =
+        $("subjectSelect").value;
+
+    const language =
+        $("languageSelect").value;
+
+
+    filtered =
+        MCQ_DATABASE.filter(q => {
+
+            const text =
+                (
+                    q.question +
+                    " " +
+                    q.chapter +
+                    " " +
+                    q.subject
+                )
+                .toLowerCase();
+
+
+            return (
+                (!search ||
+                    text.includes(search)) &&
+
+                (subject === "all" ||
+                    q.subject === subject) &&
+
+                (language === "all" ||
+                    q.language === language)
+            );
+
+        });
+
+
+    current = 0;
+
+    renderQuestion();
+
+    renderBank();
+
+    renderBookmarks();
+
+    updateStats();
+
+}
+
+
+/* =====================================================
+   RENDER QUESTION
+===================================================== */
+
+function renderQuestion(){
+
+    if(!filtered.length){
+
+        $("qMeta").textContent =
+            "No Results";
+
+        $("counter").textContent =
+            "0 / 0";
+
+        $("question").textContent =
+            "কোনো MCQ পাওয়া যায়নি।";
+
+        $("options").innerHTML = "";
+
+        $("explanation").style.display =
+            "none";
+
+        $("progressBar").style.width =
+            "0%";
+
+        return;
+
+    }
+
+
+    const q =
+        filtered[current];
+
+
+    $("qMeta").textContent =
+        `${q.subject} • ${q.chapter}`;
+
+
+    $("counter").textContent =
+        `${current + 1} / ${filtered.length}`;
+
+
+    $("progressBar").style.width =
+        `${((current + 1) /
+        filtered.length) * 100}%`;
+
+
+    $("question").textContent =
+        q.question;
+
+
+    $("options").innerHTML =
+        q.options.map(
+            (option,index) => {
+
+                return `
+                <button
+                    class="option"
+                    onclick="answerQuestion(${index})">
+
+                    ${String.fromCharCode(65+index)}.
+                    ${escapeHTML(option)}
+
+                </button>
+                `;
+
+            }
+        ).join("");
+
+
+    $("explanation").style.display =
+        "none";
+
+
+    $("explanation").textContent =
+        "";
+
+
+    $("bookmarkBtn").textContent =
+        bookmarks.has(q.id)
+        ? "🔖 Bookmarked"
+        : "🔖 Bookmark";
+
+}
+
+
+/* =====================================================
+   ANSWER
+===================================================== */
+
+function answerQuestion(selected){
+
+    if(!filtered.length)
+        return;
+
+
+    const q =
+        filtered[current];
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".option"
+        );
+
+
+    buttons.forEach(
+        (button,index) => {
+
+            button.disabled = true;
+
+
+            if(index === q.answer){
+
+                button.classList.add(
+                    "correct"
+                );
+
+            }
+
+
+            if(
+                index === selected &&
+                index !== q.answer
+            ){
+
+                button.classList.add(
+                    "wrong"
+                );
+
+            }
+
+        }
+    );
+
+
+    if(selected === q.answer){
+
+        score++;
+
+    }
+
+
+    $("explanation").textContent =
+        "Explanation: " +
+        q.explanation;
+
+
+    $("explanation").style.display =
+        "block";
+
+
+    updateStats();
+
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+$("nextBtn").onclick = () => {
+
+    if(!filtered.length)
+        return;
+
+
+    current =
+        (current + 1) %
+        filtered.length;
+
+
+    renderQuestion();
+
+};
+
+
+/* =====================================================
+   RANDOM
+===================================================== */
+
+$("randomBtn").onclick = () => {
+
+    if(!filtered.length)
+        return;
+
+
+    current =
+        Math.floor(
+            Math.random() *
+            filtered.length
+        );
+
+
+    renderQuestion();
+
+};
+
+
+/* =====================================================
+   BOOKMARK
+===================================================== */
+
+$("bookmarkBtn").onclick = () => {
+
+    if(!filtered.length)
+        return;
+
+
+    const id =
+        filtered[current].id;
+
+
+    if(bookmarks.has(id)){
+
+        bookmarks.delete(id);
+
+    }else{
+
+        bookmarks.add(id);
+
+    }
+
+
+    saveBookmarks();
+
+    renderQuestion();
+
+    renderBookmarks();
+
+    updateStats();
+
+};
+
+
+/* =====================================================
+   BANK
+===================================================== */
+
+function renderBank(){
+
+    $("bankTab").innerHTML =
+        filtered.length
+
+        ? filtered.map(
+            (q,index) => {
+
+                return `
+                <div class="result">
+
+                    <b>
+                        ${index+1}.
+                        ${escapeHTML(q.question)}
+                    </b>
+
+                    <span class="badge">
+                        ${q.subject}
+                    </span>
+
+                    <button
+                        class="secondary"
+                        onclick="openQuestion('${q.id}')">
+
+                        Open
+
+                    </button>
+
+                </div>
+                `;
+
+            }
+        ).join("")
+
+        :
+
+        `<div class="empty">
+            No questions found.
+        </div>`;
+
+}
+
+
+/* =====================================================
+   BOOKMARKS
+===================================================== */
+
+function renderBookmarks(){
+
+    const saved =
+        MCQ_DATABASE.filter(
+            q => bookmarks.has(q.id)
+        );
+
+
+    $("bookmarkTab").innerHTML =
+        saved.length
+
+        ? saved.map(
+            (q,index) => {
+
+                return `
+                <div class="result">
+
+                    <b>
+                        ${index+1}.
+                        ${escapeHTML(q.question)}
+                    </b>
+
+                    <span class="badge">
+                        ${q.subject}
+                    </span>
+
+                    <button
+                        class="secondary"
+                        onclick="openQuestion('${q.id}')">
+
+                        Open
+
+                    </button>
+
+                </div>
+                `;
+
+            }
+        ).join("")
+
+        :
+
+        `<div class="empty">
+            🔖 No bookmarked questions.
+        </div>`;
+
+}
+
+
+/* =====================================================
+   OPEN QUESTION
+===================================================== */
+
+function openQuestion(id){
+
+    const index =
+        filtered.findIndex(
+            q => q.id === id
+        );
+
+
+    if(index >= 0){
+
+        current = index;
+
+    }
+
+
+    document
+        .querySelector(
+            '[data-tab="quiz"]'
+        )
+        .click();
+
+
+    renderQuestion();
+
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+document
+.querySelectorAll(".tab")
+.forEach(tab => {
+
+    tab.onclick = () => {
+
+        document
+        .querySelectorAll(".tab")
+        .forEach(t =>
+            t.classList.remove(
+                "active"
+            )
+        );
+
+
+        tab.classList.add("active");
+
+
+        $("quizTab").style.display =
+            tab.dataset.tab === "quiz"
+            ? "block"
+            : "none";
+
+
+        $("bankTab").style.display =
+            tab.dataset.tab === "bank"
+            ? "block"
+            : "none";
+
+
+        $("bookmarkTab").style.display =
+            tab.dataset.tab === "bookmark"
+            ? "block"
+            : "none";
+
+    };
+
+});
+
+
+/* =====================================================
+   FILTER EVENTS
+===================================================== */
+
+$("search").oninput =
+    applyFilters;
+
+$("subjectSelect").onchange =
+    applyFilters;
+
+$("languageSelect").onchange =
+    applyFilters;
+
+
+/* =====================================================
+   SUBJECT SHORTCUT
+===================================================== */
+
+function selectSubject(subject){
+
+    $("subjectSelect").value =
+        subject;
+
+    applyFilters();
+
+    scrollToSection("mcq");
+
+}
+
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+function scrollToSection(id){
+
+    const element =
+        document.getElementById(id);
+
+    if(element){
+
+        element.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function updateStats(){
+
+    $("loaded").textContent =
+        MCQ_DATABASE.length;
+
+
+    $("score").textContent =
+        score;
+
+
+    $("bookmarks").textContent =
+        bookmarks.size;
+
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+$("themeBtn").onclick = () => {
+
+    document.body.classList.toggle(
+        "dark"
+    );
+
+
+    const dark =
+        document.body.classList.contains(
+            "dark"
+        );
+
+
+    localStorage.setItem(
+        "ssc27_theme",
+        dark ? "dark" : "light"
+    );
+
+
+    $("themeBtn").textContent =
+        dark ? "☀️" : "🌙";
+
+};
+
+
+if(
+    localStorage.getItem(
+        "ssc27_theme"
+    ) === "dark"
+){
+
+    document.body.classList.add(
+        "dark"
+    );
+
+    $("themeBtn").textContent =
+        "☀️";
+
+}
+
+
+/* =====================================================
+   PERIODIC TABLE
+===================================================== */
+
+const elements = [
+
+["H","Hydrogen",1,"Nonmetal"],
+["He","Helium",2,"Noble Gas"],
+["Li","Lithium",3,"Alkali Metal"],
+["Be","Beryllium",4,"Alkaline Earth"],
+["B","Boron",5,"Metalloid"],
+["C","Carbon",6,"Nonmetal"],
+["N","Nitrogen",7,"Nonmetal"],
+["O","Oxygen",8,"Nonmetal"],
+["F","Fluorine",9,"Halogen"],
+["Ne","Neon",10,"Noble Gas"],
+
+["Na","Sodium",11,"Alkali Metal"],
+["Mg","Magnesium",12,"Alkaline Earth"],
+["Al","Aluminium",13,"Post-transition Metal"],
+["Si","Silicon",14,"Metalloid"],
+["P","Phosphorus",15,"Nonmetal"],
+["S","Sulfur",16,"Nonmetal"],
+["Cl","Chlorine",17,"Halogen"],
+["Ar","Argon",18,"Noble Gas"],
+
+["K","Potassium",19,"Alkali Metal"],
+["Ca","Calcium",20,"Alkaline Earth"],
+["Sc","Scandium",21,"Transition Metal"],
+["Ti","Titanium",22,"Transition Metal"],
+["V","Vanadium",23,"Transition Metal"],
+["Cr","Chromium",24,"Transition Metal"],
+["Mn","Manganese",25,"Transition Metal"],
+["Fe","Iron",26,"Transition Metal"],
+["Co","Cobalt",27,"Transition Metal"],
+["Ni","Nickel",28,"Transition Metal"],
+["Cu","Copper",29,"Transition Metal"],
+["Zn","Zinc",30,"Transition Metal"],
+["Ga","Gallium",31,"Post-transition Metal"],
+["Ge","Germanium",32,"Metalloid"],
+["As","Arsenic",33,"Metalloid"],
+["Se","Selenium",34,"Nonmetal"],
+["Br","Bromine",35,"Halogen"],
+["Kr","Krypton",36,"Noble Gas"],
+
+["Rb","Rubidium",37,"Alkali Metal"],
+["Sr","Strontium",38,"Alkaline Earth"],
+["Y","Yttrium",39,"Transition Metal"],
+["Zr","Zirconium",40,"Transition Metal"],
+["Nb","Niobium",41,"Transition Metal"],
+["Mo","Molybdenum",42,"Transition Metal"],
+["Tc","Technetium",43,"Transition Metal"],
+["Ru","Ruthenium",44,"Transition Metal"],
+["Rh","Rhodium",45,"Transition Metal"],
+["Pd","Palladium",46,"Transition Metal"],
+["Ag","Silver",47,"Transition Metal"],
+["Cd","Cadmium",48,"Transition Metal"],
+["In","Indium",49,"Post-transition Metal"],
+["Sn","Tin",50,"Post-transition Metal"],
+["Sb","Antimony",51,"Metalloid"],
+["Te","Tellurium",52,"Metalloid"],
+["I","Iodine",53,"Halogen"],
+["Xe","Xenon",54,"Noble Gas"],
+
+["Cs","Cesium",55,"Alkali Metal"],
+["Ba","Barium",56,"Alkaline Earth"],
+["La","Lanthanum",57,"Lanthanide"],
+["Ce","Cerium",58,"Lanthanide"],
+["Pr","Praseodymium",59,"Lanthanide"],
+["Nd","Neodymium",60,"Lanthanide"],
+["Pm","Promethium",61,"Lanthanide"],
+["Sm","Samarium",62,"Lanthanide"],
+["Eu","Europium",63,"Lanthanide"],
+["Gd","Gadolinium",64,"Lanthanide"],
+["Tb","Terbium",65,"Lanthanide"],
+["Dy","Dysprosium",66,"Lanthanide"],
+["Ho","Holmium",67,"Lanthanide"],
+["Er","Erbium",68,"Lanthanide"],
+["Tm","Thulium",69,"Lanthanide"],
+["Yb","Ytterbium",70,"Lanthanide"],
+["Lu","Lutetium",71,"Lanthanide"],
+
+["Hf","Hafnium",72,"Transition Metal"],
+["Ta","Tantalum",73,"Transition Metal"],
+["W","Tungsten",74,"Transition Metal"],
+["Re","Rhenium",75,"Transition Metal"],
+["Os","Osmium",76,"Transition Metal"],
+["Ir","Iridium",77,"Transition Metal"],
+["Pt","Platinum",78,"Transition Metal"],
+["Au","Gold",79,"Transition Metal"],
+["Hg","Mercury",80,"Transition Metal"],
+["Tl","Thallium",81,"Post-transition Metal"],
+["Pb","Lead",82,"Post-transition Metal"],
+["Bi","Bismuth",83,"Post-transition Metal"],
+["Po","Polonium",84,"Post-transition Metal"],
+["At","Astatine",85,"Halogen"],
+["Rn","Radon",86,"Noble Gas"],
+
+["Fr","Francium",87,"Alkali Metal"],
+["Ra","Radium",88,"Alkaline Earth"],
+["Ac","Actinium",89,"Actinide"],
+["Th","Thorium",90,"Actinide"],
+["Pa","Protactinium",91,"Actinide"],
+["U","Uranium",92,"Actinide"],
+["Np","Neptunium",93,"Actinide"],
+["Pu","Plutonium",94,"Actinide"],
+["Am","Americium",95,"Actinide"],
+["Cm","Curium",96,"Actinide"],
+["Bk","Berkelium",97,"Actinide"],
+["Cf","Californium",98,"Actinide"],
+["Es","Einsteinium",99,"Actinide"],
+["Fm","Fermium",100,"Actinide"],
+["Md","Mendelevium",101,"Actinide"],
+["No","Nobelium",102,"Actinide"],
+["Lr","Lawrencium",103,"Actinide"],
+
+["Rf","Rutherfordium",104,"Transition Metal"],
+["Db","Dubnium",105,"Transition Metal"],
+["Sg","Seaborgium",106,"Transition Metal"],
+["Bh","Bohrium",107,"Transition Metal"],
+["Hs","Hassium",108,"Transition Metal"],
+["Mt","Meitnerium",109,"Transition Metal"],
+["Ds","Darmstadtium",110,"Transition Metal"],
+["Rg","Roentgenium",111,"Transition Metal"],
+["Cn","Copernicium",112,"Transition Metal"],
+["Nh","Nihonium",113,"Post-transition Metal"],
+["Fl","Flerovium",114,"Post-transition Metal"],
+["Mc","Moscovium",115,"Post-transition Metal"],
+["Lv","Livermorium",116,"Post-transition Metal"],
+["Ts","Tennessine",117,"Halogen"],
+["Og","Oganesson",118,"Noble Gas"]
+
+];
+
+
+function renderPeriodicTable(){
+
+    const table =
+        $("periodicTable");
+
+
+    table.innerHTML =
+        elements.map(
+            e => {
+
+                return `
+                <div
+                    class="element"
+                    onclick="showElement(
+                        '${e[0]}',
+                        '${e[1]}',
+                        '${e[2]}',
+                        '${e[3]}'
+                    )">
+
+                    <strong>
+                        ${e[0]}
+                    </strong>
+
+                    <small>
+                        ${e[2]}
+                    </small>
+
+                    <small>
+                        ${e[1]}
+                    </small>
+
+                </div>
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+function showElement(
+    symbol,
+    name,
+    number,
+    type
+){
+
+    $("elementInfo").style.display =
+        "block";
+
+
+    $("elementName").textContent =
+        `${symbol} — ${name}`;
+
+
+    $("elementDetails").textContent =
+        `Atomic Number: ${number} • Category: ${type}`;
+
+}
+
+
+renderPeriodicTable();
+
+updateStats();
+
+applyFilters();
+
+</script>
+
+</body>
+  </html>
